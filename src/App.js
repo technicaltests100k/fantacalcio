@@ -5,19 +5,22 @@ import './App.css';
 import data from './API/match-lineups.json';
 
 import Pusher from 'pusher-js';
-
-// APP_KEY = 6a3acdaba86ad858948b APP_CLUSTER = eu
-// Channel = lineups
-// Event = lineup-updated
+import 'whatwg-fetch';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.socket = null;
+    this.socket = this.connectToPusher('6a3acdaba86ad858948b', {
+      cluster: 'eu'
+    });
+    this.state = {
+      currentTeam: {}
+    };
   }
 
   componentDidMount() {
-    this.pusher();
+    this.bindToChannel(this.subscribeChannel(this.socket), 'lineup-updated');
+    this.fetchData('http://lineups.dev.fantech.io/', this.updateTeam);
   }
 
   componentWillUnmount() {
@@ -27,28 +30,46 @@ class App extends Component {
     });
   }
 
-  pusher = () => {
-    this.socket = new Pusher('6a3acdaba86ad858948b', {
-      cluster: 'eu'
+  fetchData = (url, updateCallback) => {
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        console.log('parsed json', json);
+        updateCallback(json);
+      })
+      .catch(ex => {
+        console.log('parsing failed', ex);
+      });
+  };
+
+  updateTeam = newTeam => {
+    this.setState({
+      currentTeam: newTeam
+    });
+  };
+
+  connectToPusher = (key, config) => {
+    const socket = new Pusher(key, config);
+
+    socket.connection.bind('connected', () => {
+      console.log('socket CONNECTED');
     });
 
-    this.socket.connection.bind('connected', () => {
-      console.log('CONNECTED');
+    return socket;
+  };
+
+  subscribeChannel = socket => {
+    const channel = socket.subscribe('lineups');
+    return channel;
+  };
+
+  bindToChannel = (channel, event) => {
+    channel.bind(event, data => {
+      this.updateTeam(data);
+      console.log('new update', data);
     });
-
-    const channel = this.socket.subscribe('lineups');
-
-    channel.bind(
-      'lineup-updated',
-      function() {
-        console.log(`hi ${this.name}`);
-      },
-      { name: 'Pusher' }
-    );
-
-    Pusher.log = msg => {
-      console.log('Pusher log', msg);
-    };
   };
 
   getTeam = team => {
@@ -74,14 +95,22 @@ class App extends Component {
   };
 
   render() {
+    if (!this.state.currentTeam && !this.state.currentTeam.formation) {
+      return null;
+    }
+    const { currentTeam } = this.state;
+
+    console.log('Team: ', this.state.currentTeam);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">
+            Welcome to Luca Carangella's Technical test.
+          </h1>
         </header>
 
-        <div className={'pitch'}>{this.getTeam(data.lineups[2])}</div>
+        <div className={'pitch'}>{this.getTeam(currentTeam)}</div>
       </div>
     );
   }
