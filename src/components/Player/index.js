@@ -10,7 +10,9 @@ export class Player extends PureComponent {
   /**
    *	Props implementation.
    */
-  static propTypes = {};
+  static propTypes = {
+    player: PropTypes.object
+  };
   /**
    * Implements defaultProps().
    */
@@ -28,7 +30,12 @@ export class Player extends PureComponent {
    * @return {ReactElement} markup
    */
   render() {
-    return <img src={tshirt} className={'player'} />;
+    return (
+      <div className={'player'}>
+        <img src={tshirt} />
+        <p>{this.props.player.name}</p>
+      </div>
+    );
   }
 }
 

@@ -1,5 +1,14 @@
 .player {
-  width: 4vh;
-  height: 4vh;
-  margin: 2vmax;
+  width: 20%;
+  max-width: 100px;
+  height: 20%;
+  padding: 10px;
+}
+
+.player p {
+  font-size: 2vmax;
+}
+
+.player img {
+  width: 100%;
 }

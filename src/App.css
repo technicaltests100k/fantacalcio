@@ -23,32 +23,15 @@
 }
 
 .pitch {
-  width: 320px;
-  height: 400px;
-  background-color: green;
+  width: 100%;
+  background: url('./Assets/pitch-bg.png') center center;
+  margin: auto;
 }
 
 .section {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
-
-/* .keeper {
-  display: flex;
-  justify-content: center;
-}
-.defence {
-  display: flex;
-  justify-content: center;
-}
-.midfield {
-  display: flex;
-  justify-content: center;
-}
-.attack {
-  display: flex;
-  justify-content: center;
-} */
 
 @keyframes App-logo-spin {
   from {
