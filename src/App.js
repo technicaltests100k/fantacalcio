@@ -6,21 +6,26 @@ import data from './API/match-lineups.json';
 
 import Pusher from 'pusher-js';
 import 'whatwg-fetch';
+import config from './Config';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.socket = this.connectToPusher('6a3acdaba86ad858948b', {
-      cluster: 'eu'
+    this.socket = this.connectToPusher(config.pusher.key, {
+      cluster: config.pusher.cluster
     });
     this.state = {
       currentTeam: {}
     };
+    console.log('config', config.pusher);
   }
 
   componentDidMount() {
-    this.bindToChannel(this.subscribeChannel(this.socket), 'lineup-updated');
-    this.fetchData('http://lineups.dev.fantech.io/', this.updateTeam);
+    this.bindToChannel(
+      this.subscribeChannel(this.socket, config.pusher.channel),
+      config.pusher.event
+    );
+    this.fetchData(config.endpoint, this.updateTeam);
   }
 
   componentWillUnmount() {
@@ -60,8 +65,8 @@ class App extends Component {
     return socket;
   };
 
-  subscribeChannel = socket => {
-    const channel = socket.subscribe('lineups');
+  subscribeChannel = (socket, channelName) => {
+    const channel = socket.subscribe(channelName);
     return channel;
   };
 
