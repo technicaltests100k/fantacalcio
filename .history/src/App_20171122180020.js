@@ -5,29 +5,28 @@ import './App.css';
 import data from './API/match-lineups.json';
 
 class App extends Component {
-  getTeam = team => {
-    const formation = `1${team.formation}`.split('');
+  render() {
+    console.log('data', data);
+    const sections = ['defence', 'midfield', 'attack'];
+
+    const formation = `1${data.lineups[0].formation}`.split('');
 
     let begin = 0;
-    const readyTeam = formation.map((line, index) => {
-      const end = begin + parseInt(line, 10);
-      const section = (
-        <div className="section" key={index}>
-          {data.lineups[0].players.slice(begin, end).map((player, index) => {
-            return <Player key={index} />;
+    const team = formation.map(line => {
+      const end = line + 1;
+      return (
+        <div className="section">
+          {data.lineups[0].players.slice(begin, end).map(player => {
+            // console.log('player', player.name);
+            return <Player key={player.name} />;
           })}
         </div>
       );
-
       begin = end;
-
-      return section;
     });
 
-    return readyTeam;
-  };
+    console.log('team', team);
 
-  render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -35,7 +34,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <div className={'pitch'}>{this.getTeam(data.lineups[0])}</div>
+        <div className={'pitch'}>{team}</div>
       </div>
     );
   }

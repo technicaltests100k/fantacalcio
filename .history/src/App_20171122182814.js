@@ -9,6 +9,7 @@ class App extends Component {
     const formation = `1${team.formation}`.split('');
 
     let begin = 0;
+    // let end = 0;
     const readyTeam = formation.map((line, index) => {
       const end = begin + parseInt(line, 10);
       const section = (

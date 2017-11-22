@@ -9,25 +9,29 @@ class App extends Component {
     const formation = `1${team.formation}`.split('');
 
     let begin = 0;
+    let end = 0;
     const readyTeam = formation.map((line, index) => {
-      const end = begin + parseInt(line, 10);
-      const section = (
+      end = begin + parseInt(line);
+      console.log(`${line} ${begin} ${end}`);
+      return (
         <div className="section" key={index}>
           {data.lineups[0].players.slice(begin, end).map((player, index) => {
+            console.log('player', player.name);
             return <Player key={index} />;
           })}
         </div>
       );
-
       begin = end;
-
-      return section;
     });
 
     return readyTeam;
   };
 
   render() {
+    // console.log('data', data);
+
+    console.log('team', this.getTeam(data.lineups[0]));
+
     return (
       <div className="App">
         <header className="App-header">

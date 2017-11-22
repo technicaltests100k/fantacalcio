@@ -27,6 +27,12 @@
   height: 400px;
   background-color: green;
 }
+.player {
+  width: 4vh;
+  height: 4vh;
+  background-color: red;
+  margin: 2vmax;
+}
 
 .section {
   display: flex;

@@ -9,6 +9,7 @@ class App extends Component {
     const formation = `1${team.formation}`.split('');
 
     let begin = 0;
+    // let end = 0;
     const readyTeam = formation.map((line, index) => {
       const end = begin + parseInt(line, 10);
       const section = (
@@ -35,7 +36,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <div className={'pitch'}>{this.getTeam(data.lineups[0])}</div>
+        <div className={'pitch'}>{this.getTeam(data.lineups[1])}</div>
       </div>
     );
   }

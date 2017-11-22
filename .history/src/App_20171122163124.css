@@ -27,28 +27,32 @@
   height: 400px;
   background-color: green;
 }
-
-.section {
-  display: flex;
-  justify-content: center;
+.player {
+  width: 20%;
+  /* height: 20%; */
+  background-color: red;
+  margin: 20px;
 }
-
-/* .keeper {
+.keeper {
   display: flex;
   justify-content: center;
+  /* display: block; */
 }
 .defence {
   display: flex;
   justify-content: center;
+  /* display: block; */
 }
 .midfield {
   display: flex;
   justify-content: center;
+  /* display: block; */
 }
 .attack {
   display: flex;
   justify-content: center;
-} */
+  /* display: block; */
+}
 
 @keyframes App-logo-spin {
   from {

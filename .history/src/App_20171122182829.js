@@ -35,7 +35,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <div className={'pitch'}>{this.getTeam(data.lineups[0])}</div>
+        <div className={'pitch'}>{this.getTeam(data.lineups[1])}</div>
       </div>
     );
   }

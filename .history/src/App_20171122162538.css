@@ -23,32 +23,35 @@
 }
 
 .pitch {
-  width: 320px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background-color: green;
 }
-
-.section {
-  display: flex;
-  justify-content: center;
+.player {
+  width: 50px;
+  height: 50px;
+  background-color: red;
 }
-
-/* .keeper {
+.keeper {
   display: flex;
   justify-content: center;
+  /* display: block; */
 }
 .defence {
   display: flex;
   justify-content: center;
+  /* display: block; */
 }
 .midfield {
   display: flex;
   justify-content: center;
+  /* display: block; */
 }
 .attack {
   display: flex;
   justify-content: center;
-} */
+  /* display: block; */
+}
 
 @keyframes App-logo-spin {
   from {
