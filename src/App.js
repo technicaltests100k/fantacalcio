@@ -17,7 +17,6 @@ class App extends Component {
     this.state = {
       currentTeam: {}
     };
-    console.log('config', config.pusher);
   }
 
   componentDidMount() {
@@ -77,7 +76,14 @@ class App extends Component {
     });
   };
 
+  getPlayers = (players, withTshirt = false) => {
+    return players.map((player, index) => {
+      return <Player player={player} key={index} tshirt={withTshirt} />;
+    });
+  };
+
   getTeam = team => {
+    console.log('teamteam', team);
     const formation = `1${team.formation}`.split('');
 
     let begin = 0;
@@ -85,9 +91,7 @@ class App extends Component {
       const end = begin + parseInt(line, 10);
       const row = (
         <div className="section" key={index}>
-          {data.lineups[0].players.slice(begin, end).map((player, index) => {
-            return <Player player={player} key={index} />;
-          })}
+          {this.getPlayers(team.players.slice(begin, end), true)}
         </div>
       );
 
@@ -100,22 +104,25 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.currentTeam && !this.state.currentTeam.formation) {
+    if (!this.state.currentTeam || !this.state.currentTeam.formation) {
       return null;
     }
+    console.log('this.state.currentTeam', this.state.currentTeam);
     const { currentTeam } = this.state;
 
-    console.log('Team: ', this.state.currentTeam);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">
-            Welcome to Luca Carangella's Technical test.
+            Welcome to Luca Carangella's Technical Test.
           </h1>
         </header>
 
         <div className={'pitch'}>{this.getTeam(currentTeam)}</div>
+        <div className={'pitch list'}>
+          <ol>{this.getPlayers(currentTeam.players)}</ol>
+        </div>
       </div>
     );
   }
