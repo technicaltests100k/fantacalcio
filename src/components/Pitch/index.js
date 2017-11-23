@@ -20,6 +20,13 @@ export class Pitch extends PureComponent {
     type: 'formation'
   };
 
+  /**
+   * It returns the team object with the players list and eventual style
+   * @param {array} players - list of players components
+   * @param {string} type - this is used in order to establish how to show the team on the pitch:
+   * - list
+   * - formation
+   */
   getTeam = (players, type) => {
     if (type === 'list') {
       return {
