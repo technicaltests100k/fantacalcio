@@ -1,0 +1,16 @@
+.pitch {
+  width: 100%;
+  background: url('../../Assets/pitch-bg.png') center center;
+  margin: auto;
+}
+
+.pitch.list {
+  padding: 20px 0;
+  display: block;
+}
+
+@media screen and (min-width: 320px) {
+  .pitch.list {
+    display: none;
+  }
+}

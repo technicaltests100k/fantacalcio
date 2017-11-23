@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Player from './components/Player';
-import './App.css';
-import data from './API/match-lineups.json';
-
+import Pitch from './components/Pitch';
 import Pusher from 'pusher-js';
 import 'whatwg-fetch';
 import config from './Config';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -83,7 +82,6 @@ class App extends Component {
   };
 
   getTeam = team => {
-    console.log('teamteam', team);
     const formation = `1${team.formation}`.split('');
 
     let begin = 0;
@@ -107,7 +105,6 @@ class App extends Component {
     if (!this.state.currentTeam || !this.state.currentTeam.formation) {
       return null;
     }
-    console.log('this.state.currentTeam', this.state.currentTeam);
     const { currentTeam } = this.state;
 
     return (
@@ -118,11 +115,8 @@ class App extends Component {
             Welcome to Luca Carangella's Technical Test.
           </h1>
         </header>
-
-        <div className={'pitch'}>{this.getTeam(currentTeam)}</div>
-        <div className={'pitch list'}>
-          <ol>{this.getPlayers(currentTeam.players)}</ol>
-        </div>
+        <Pitch>{this.getTeam(currentTeam)}</Pitch>
+        <Pitch type={'list'}>{this.getPlayers(currentTeam.players)}</Pitch>
       </div>
     );
   }
