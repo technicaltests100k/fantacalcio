@@ -20,14 +20,6 @@ export class Player extends PureComponent {
   static defaultProps = {
     tshirt: false
   };
-  /**
-   *	Player contructor.
-   * @param {object} props to constructor.
-   *	@constructor
-   */
-  constructor(props) {
-    super(props);
-  }
 
   /**
    * Render
@@ -39,7 +31,7 @@ export class Player extends PureComponent {
 
     return tshirt ? (
       <div className={'player'}>
-        <img src={tshirtImg} />
+        <img src={tshirtImg} alt="player tshirt" />
         <p>{name}</p>
       </div>
     ) : (
