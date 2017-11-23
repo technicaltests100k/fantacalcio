@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Player /> should render Player as an li element 1`] = `
+<li
+  class="playerList"
+>
+  <p>
+    Estebian Cambiasso - Midfielder - CM
+  </p>
+</li>
+`;
+
+exports[`<Player /> should render Player with its tshirt img 1`] = `
+<div
+  class="player"
+>
+  <img
+    alt="player tshirt"
+    src="player-shirt.png"
+  >
+    
+  </img>
+  <p>
+    Estebian Cambiasso
+  </p>
+</div>
+`;

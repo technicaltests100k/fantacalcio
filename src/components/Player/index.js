@@ -11,7 +11,11 @@ export class Player extends PureComponent {
    *	Props implementation.
    */
   static propTypes = {
-    player: PropTypes.object,
+    player: PropTypes.shape({
+      name: PropTypes.string,
+      position: PropTypes.string,
+      type: PropTypes.string
+    }),
     tshirt: PropTypes.bool
   };
   /**
