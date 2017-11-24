@@ -47,7 +47,7 @@ class App extends Component {
    * @param {funcion} updateCallback - callback for updating the state with the new data received
    * @returns {object} fetch response
    */
-  fetchData = (url, updateCallback) => {
+  fetchData(url, updateCallback) {
     fetch(url)
       .then(response => {
         return response.json();
@@ -59,7 +59,7 @@ class App extends Component {
       .catch(ex => {
         console.log('parsing failed', ex);
       });
-  };
+  }
 
   /**
    * It updates the the state of the current team
@@ -78,15 +78,15 @@ class App extends Component {
    * @param {object} config - configuration object to pass to Pusher with different options. Read doc for more info.
    * @returns {object} socket
    */
-  connectToPusher = (key, config) => {
+  connectToPusher(key, config) {
     const socket = new Pusher(key, config);
 
-    socket.connection.bind('connected', () => {
-      console.log('socket CONNECTED');
+    socket.connection.bind('connected', test => {
+      console.log('socket CONNECTED', socket);
     });
 
     return socket;
-  };
+  }
 
   /**
    * It subscribes to a Pusher's channel
@@ -94,21 +94,21 @@ class App extends Component {
    * @param {string} channelName - channel's name to connect to
    * @returns {object} - channel
    */
-  subscribeChannel = (socket, channelName) => {
+  subscribeChannel(socket, channelName) {
     const channel = socket.subscribe(channelName);
     return channel;
-  };
+  }
 
   /**
    * It listens to updates on an event in a channel and it updates the state with it
    * @param {object} channel - channel to bind to
    * @param {string} event - event's name to listern to new updates
    */
-  bindToChannel = (channel, event) => {
+  bindToChannel(channel, event) {
     channel.bind(event, data => {
       this.updateTeam(data);
     });
-  };
+  }
 
   /**
    * It returns the list of players from an array provided
@@ -170,13 +170,15 @@ class App extends Component {
       return null;
     }
     const { currentTeam } = this.state;
-
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">
-            Welcome to Luca Carangella's Technical Test.
+            {
+              // Welcome to Luca Carangella's Technical Test.
+            }
+            WHATCAR
           </h1>
         </header>
         <Pitch>{this.getTeam(currentTeam)}</Pitch>

@@ -82,8 +82,7 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "\\.(svg)$": "<rootDir>/config/jest/empty-module.js"
+      "^react-native$": "react-native-web"
     },
     "setupTestFrameworkScriptFile": "./config/jest/setupTests.js",
     "moduleFileExtensions": [
@@ -107,6 +106,7 @@
   "devDependencies": {
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "enzyme-to-json": "^3.2.2"
+    "enzyme-to-json": "^3.2.2",
+    "sinon": "^4.1.2"
   }
 }

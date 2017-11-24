@@ -3,17 +3,13 @@
 exports[`<Pitch /> should render Pitch with the team and theirs tshirst 1`] = `
 <div
   class="pitch "
->
-  
-</div>
+/>
 `;
 
 exports[`<Pitch /> should render Pitch with the team as a list 1`] = `
 <div
   class="pitch list"
 >
-  <ol>
-    
-  </ol>
+  <ol />
 </div>
 `;
