@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Pitch from './components/Pitch';
 import Pusher from 'pusher-js';
-import 'whatwg-fetch';
+import fetch from 'isomorphic-fetch';
 import config from './Config';
 import './App.css';
 
@@ -35,9 +35,6 @@ class App extends Component {
    */
   componentWillUnmount() {
     this.socket.disconnect();
-    this.socket.connection.bind('disconnected', () => {
-      console.log('disconnected from socket');
-    });
   }
 
   /**
@@ -47,16 +44,12 @@ class App extends Component {
    * @returns {object} fetch response
    */
   fetchData(url, updateCallback) {
-    fetch(url)
+    return fetch(url)
       .then(response => {
         return response.json();
       })
       .then(json => {
-        console.log('parsed json', json);
         updateCallback(json);
-      })
-      .catch(ex => {
-        console.log('parsing failed', ex);
       });
   }
 
@@ -80,9 +73,7 @@ class App extends Component {
   connectToPusher(key, config) {
     const socket = new Pusher(key, config);
 
-    socket.connection.bind('connected', () => {
-      console.log('socket CONNECTED');
-    });
+    socket.connection.bind('connected', () => {});
 
     return socket;
   }

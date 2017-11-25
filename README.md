@@ -1,13 +1,100 @@
 This project was bootstrapped with
-[Create React App](https://github.com/facebookincubator/create-react-app).
-
-Below you will find some information on how to perform common tasks.<br> You can
-find the most recent version of this guide
-[here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+[Create React App](https://github.com/facebookincubator/create-react-app), but I
+have ejected it as I wanted to use Enzyme therefore I had to do it in order to
+have full control in the configuration.
 
 ## Table of Contents
 
+* [Run project](#run-project)
+* [Launch Tests](#launch-tests)
+* [Launch Tests with coverage](#launch-tests-with-coverage)
+* [Pitch](#pitch)
+* [Player](#player)
 * [Instructions](#instructions)
+
+## Run Project
+
+```
+yarn start
+```
+
+or
+
+```
+npm start
+```
+
+## Launch Tests
+
+```
+yarn test
+```
+
+or
+
+```
+npm test
+```
+
+## Launch Tests with coverage
+
+```
+yarn test --coverage
+```
+
+or
+
+```
+npm test --coverage
+```
+
+## Pitch
+
+Pitch is the main component which receive the "team" data from the API and takes
+care of diploing the players in the correct rows. The are 2 different way of
+displaying players:
+
+* Formation: The players are displayed in rows with their tshirts, but only when
+  the viewport is >320px. When it is below 320px, only the tshirts are still
+  visible, not the names.
+* List: The players are displayed in an ordered list, but only when the viewport
+  is 320px. When is >320px the list dissaper completely.
+
+NOTE: Please, do note that I am aware this goes against the test's description,
+but I thought it was a good idea showing how clear and gracefully the team with
+the tshirts still appears. Obviously the names would have been way to small, but
+this is why we have the list! :) There are at least 2 way to do what the test's
+description says. I suppose we can go through them in person.
+
+Normal use:
+
+```
+<Pitch team={currentTeam} />
+```
+
+with list:
+
+```
+<Pitch type={'list'} team={currentTeam} />
+```
+
+## Player
+
+This is simply the player component which return the player's information
+wrapped in either a <li> tag or <div>. The information diplayed are different in
+the two cases as the purpose is different.
+
+Wrapped in a <li>
+
+```
+<Player player={player} />;
+```
+
+Wrapped in a <div> with the tshirt img
+
+```
+<Player player={player} tshirt={true} />;
+```
 
 ## Instructions:
 
