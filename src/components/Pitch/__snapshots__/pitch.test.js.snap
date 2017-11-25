@@ -3,13 +3,549 @@
 exports[`<Pitch /> should render Pitch with the team and theirs tshirst 1`] = `
 <div
   class="pitch "
-/>
+>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        GK
+      </span>
+      <p>
+        Hugo Lloris
+      </p>
+      <p>
+        1
+      </p>
+    </div>
+  </div>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        RB
+      </span>
+      <p>
+        Serge Aurier
+      </p>
+      <p>
+        2
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CB
+      </span>
+      <p>
+        Toby Alderweireld
+      </p>
+      <p>
+        5
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CB
+      </span>
+      <p>
+        Jan Vertonghen
+      </p>
+      <p>
+        6
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        LB
+      </span>
+      <p>
+        Ben Davies
+      </p>
+      <p>
+        3
+      </p>
+    </div>
+  </div>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        RM
+      </span>
+      <p>
+        Christian Eriksen
+      </p>
+      <p>
+        7
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CM
+      </span>
+      <p>
+        Eric Dier
+      </p>
+      <p>
+        4
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CM
+      </span>
+      <p>
+        Mousa Dembele
+      </p>
+      <p>
+        8
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        LM
+      </span>
+      <p>
+        Dele Alli
+      </p>
+      <p>
+        11
+      </p>
+    </div>
+  </div>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        FW
+      </span>
+      <p>
+        Harry Kane
+      </p>
+      <p>
+        9
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        FW
+      </span>
+      <p>
+        Fernando Llorente
+      </p>
+      <p>
+        10
+      </p>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`<Pitch /> should render Pitch with the team as a list 1`] = `
+exports[`<Pitch /> should render Pitch with the team and theirs tshirst as default if type is not recognised 1`] = `
+<div
+  class="pitch "
+>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        GK
+      </span>
+      <p>
+        Hugo Lloris
+      </p>
+      <p>
+        1
+      </p>
+    </div>
+  </div>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        RB
+      </span>
+      <p>
+        Serge Aurier
+      </p>
+      <p>
+        2
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CB
+      </span>
+      <p>
+        Toby Alderweireld
+      </p>
+      <p>
+        5
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CB
+      </span>
+      <p>
+        Jan Vertonghen
+      </p>
+      <p>
+        6
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        LB
+      </span>
+      <p>
+        Ben Davies
+      </p>
+      <p>
+        3
+      </p>
+    </div>
+  </div>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        RM
+      </span>
+      <p>
+        Christian Eriksen
+      </p>
+      <p>
+        7
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CM
+      </span>
+      <p>
+        Eric Dier
+      </p>
+      <p>
+        4
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        CM
+      </span>
+      <p>
+        Mousa Dembele
+      </p>
+      <p>
+        8
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        LM
+      </span>
+      <p>
+        Dele Alli
+      </p>
+      <p>
+        11
+      </p>
+    </div>
+  </div>
+  <div
+    class="section"
+  >
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        FW
+      </span>
+      <p>
+        Harry Kane
+      </p>
+      <p>
+        9
+      </p>
+    </div>
+    <div
+      class="player"
+    >
+      <img
+        alt="player tshirt"
+        src="player-shirt.png"
+      />
+      <span
+        class="role"
+      >
+        FW
+      </span>
+      <p>
+        Fernando Llorente
+      </p>
+      <p>
+        10
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Pitch /> should render Pitch with the team as a list and no tshirst 1`] = `
 <div
   class="pitch list"
 >
-  <ol />
+  <ol>
+    <li
+      class="playerList"
+    >
+      <p>
+        Hugo Lloris - GK - Goalkeeper
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Serge Aurier - RB - Defender
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Toby Alderweireld - CB - Defender
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Jan Vertonghen - CB - Defender
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Ben Davies - LB - Defender
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Christian Eriksen - RM - Midfielder
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Eric Dier - CM - Midfielder
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Mousa Dembele - CM - Midfielder
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Dele Alli - LM - Midfielder
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Harry Kane - FW - Forward
+      </p>
+    </li>
+    <li
+      class="playerList"
+    >
+      <p>
+        Fernando Llorente - FW - Forward
+      </p>
+    </li>
+  </ol>
 </div>
 `;

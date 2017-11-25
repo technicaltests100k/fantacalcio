@@ -19,25 +19,23 @@ const mockedSocket = {
 
 describe('<App />', () => {
   beforeAll(() => {
-    // console.log('FETCH', fetch);
-    // const fetch = sinon.stub();
     stubFetchData = sinon.stub(App.prototype, 'fetchData').callsFake(() => {
       return mockFetchedData;
     });
-    stubConnectToPusher = sinon.spy(App.prototype, 'connectToPusher');
-    // .callsFake(() => {
-    //   return mockedSocket;
-    // });
-    stubSubscribeChannel = sinon.spy(App.prototype, 'subscribeChannel');
-    // .callsFake(() => {
-    //   return 'channel';
-    // });
-    stubBindToChannel = sinon.spy(App.prototype, 'bindToChannel');
-    // .callsFake(() => {});
+    stubConnectToPusher = sinon
+      .stub(App.prototype, 'connectToPusher')
+      .callsFake(() => {
+        return mockedSocket;
+      });
+    stubSubscribeChannel = sinon
+      .stub(App.prototype, 'subscribeChannel')
+      .callsFake(() => {
+        return 'channel';
+      });
+    stubBindToChannel = sinon
+      .stub(App.prototype, 'bindToChannel')
+      .callsFake(() => {});
     stubComponentWillUnmount = sinon.spy(App.prototype, 'componentWillUnmount');
-    // stubComponentWillUnmount = sinon
-    //   .stub(App.prototype, 'componentWillUnmount')
-    //   .callsFake(() => {});
 
     wrapper = mount(<App />);
   });
@@ -59,17 +57,17 @@ describe('<App />', () => {
   });
 
   it('should subscribe to a channel calling the function once with the right args', () => {
-    // expect(
-    //   stubSubscribeChannel.calledWith(mockedSocket, config.pusher.channel)
-    // ).toBeTruthy();
+    expect(
+      stubSubscribeChannel.calledWith(mockedSocket, config.pusher.channel)
+    ).toBeTruthy();
     expect(stubSubscribeChannel.called).toBeTruthy();
     expect(stubSubscribeChannel.calledOnce).toBeTruthy();
   });
 
   it('should bind to a channel calling the function only once with the right args', () => {
-    // expect(
-    //   stubBindToChannel.calledWith('channel', config.pusher.event)
-    // ).toBeTruthy();
+    expect(
+      stubBindToChannel.calledWith('channel', config.pusher.event)
+    ).toBeTruthy();
     expect(stubBindToChannel.called).toBeTruthy();
     expect(stubBindToChannel.calledOnce).toBeTruthy();
   });
@@ -80,17 +78,8 @@ describe('<App />', () => {
     expect(wrapper.state().currentTeam).toEqual(mockFetchedData);
   });
 
-  // it('should ', () => {
-  //   console.log('instance', wrapper.instance().socket);
-  //   const socket = wrapper.instance().socket;
-  //   const stubDisconnect = sinon.stub(socket, 'disconnect');
-  //   expect(stubDisconnect.called).toBeTruthy();
-  //   expect(stubDisconnect.calledOnce).toBeTruthy();
-  // });
-
-  it('test', () => {
+  it('should unmount the component ', () => {
     wrapper.unmount();
-    console.log('stubComponentWillUnmount', stubComponentWillUnmount.callCount);
     expect(stubComponentWillUnmount.called).toBeTruthy();
     expect(stubComponentWillUnmount.calledOnce).toBeTruthy();
   });

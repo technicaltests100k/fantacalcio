@@ -31,12 +31,14 @@ export class Player extends PureComponent {
    */
   render() {
     const { tshirt, player } = this.props;
-    const { name, position, type } = player;
+    const { name, position, type, formation_place } = player;
 
     return tshirt ? (
       <div className={'player'}>
         <img src={tshirtImg} alt="player tshirt" />
+        <span className={'role'}>{position}</span>
         <p>{name}</p>
+        <p>{formation_place}</p>
       </div>
     ) : (
       <li className={'playerList'}>

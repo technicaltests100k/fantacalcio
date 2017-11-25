@@ -4,6 +4,20 @@
   height: 20%;
   padding: 10px;
   word-break: break-word;
+  position: relative;
+}
+
+.role {
+  position: absolute;
+  top: -16px;
+  left: -14px;
+  margin-top: 50%;
+  margin-left: 50%;
+  display: block;
+  font-size: 20px;
+  /* background-color: red; */
+  /* padding: 5px 10px; */
+  /* border-radius: 50%; */
 }
 
 .player p {
@@ -25,4 +39,5 @@
 
 .playerList p {
   display: block;
+  font-size: 25px;
 }

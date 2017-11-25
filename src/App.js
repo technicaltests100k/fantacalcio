@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Player from './components/Player';
 import Pitch from './components/Pitch';
 import Pusher from 'pusher-js';
 import 'whatwg-fetch';
@@ -81,8 +80,8 @@ class App extends Component {
   connectToPusher(key, config) {
     const socket = new Pusher(key, config);
 
-    socket.connection.bind('connected', test => {
-      console.log('socket CONNECTED', socket);
+    socket.connection.bind('connected', () => {
+      console.log('socket CONNECTED');
     });
 
     return socket;
@@ -110,61 +109,6 @@ class App extends Component {
     });
   }
 
-  /**
-   * It returns the list of players from an array provided
-   * @param {array} players - array of players to loop through
-   * @param {boolean} withTshirt - option to pass that determines how to display the player:
-   * - false: wrapped in a <li> element. It will be displayed without the tshirt image
-   * - true: wrapped in a <div> element. It will be displayed with the tshirt image
-   * @return {array} - array of Players components
-   */
-  getPlayers = (players, withTshirt = false) => {
-    return players.map((player, index) => {
-      return <Player player={player} key={index} tshirt={withTshirt} />;
-    });
-  };
-
-  /**
-   * It returns the team to show on the pitch according to the provided formation option.
-   * @param {object} team - Object got from the API. It has the formation and the players' list in it.
-   * @return {array} readyTeam - This is the list of players divided in the correct rows according to the formation provided from the API json.
-   * A formation is a string like: "442". Every number of this string determines the number of players component to show in every row, which are 4:
-   * - goalkeeper
-   * - defence
-   * - midfield
-   * - attack
-   * I.e. if formation is "442", I add the goalkeeper to it first to turn it into "1442" and the result is something like:
-   * row 1
-   *  1 - Player
-   * row 2
-   *  4 - Players
-   * row 3
-   *  4 - Players
-   * row 4
-   *  2 - Players
-   */
-  getTeam = team => {
-    //Add 1 to formation string to turn it into "1xxx"
-    const formation = `1${team.formation}`.split('');
-
-    let begin = 0;
-    const readyTeam = formation.map((line, index) => {
-      const end = begin + parseInt(line, 10);
-      const row = (
-        //new row with list of players who belong to it
-        <div className="section" key={index}>
-          {this.getPlayers(team.players.slice(begin, end), true)}
-        </div>
-      );
-
-      begin = end;
-
-      return row;
-    });
-
-    return readyTeam;
-  };
-
   render() {
     if (!this.state.currentTeam || !this.state.currentTeam.formation) {
       return null;
@@ -174,15 +118,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">
-            {
-              // Welcome to Luca Carangella's Technical Test.
-            }
-            WHATCAR
-          </h1>
+          <h1 className="App-title">{currentTeam.team}</h1>
+          <h2>{`Formation - ${currentTeam.formation}`}</h2>
         </header>
-        <Pitch>{this.getTeam(currentTeam)}</Pitch>
-        <Pitch type={'list'}>{this.getPlayers(currentTeam.players)}</Pitch>
+        <Pitch team={currentTeam} />
+        <Pitch type={'list'} team={currentTeam} />
       </div>
     );
   }
