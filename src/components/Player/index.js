@@ -36,8 +36,8 @@ export class Player extends PureComponent {
     return tshirt ? (
       <div className={'player'}>
         <img src={tshirtImg} alt="player tshirt" />
-        <span className={'role'}>{position}</span>
         <p>{name}</p>
+        <p>{position}</p>
         <p>{formation_place}</p>
       </div>
     ) : (
