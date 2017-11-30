@@ -60,8 +60,22 @@ class App extends Component {
    */
   updateTeam = newTeam => {
     this.setState({
-      currentTeam: newTeam
+      currentTeam: {
+        objTeam: newTeam,
+        mapTeam: this.setTeamMap(newTeam)
+      }
     });
+  };
+
+  /**
+   * It create the map of the team where the key is the player's formation_place
+   * @param {Object} team - the team received from the API
+   * @returns {map} teamMap - the map created
+   */
+  setTeamMap = team => {
+    let teamMap = new Map();
+    team.players.map(player => teamMap.set(player.formation_place, player));
+    return teamMap;
   };
 
   /**
@@ -101,7 +115,7 @@ class App extends Component {
   }
 
   render() {
-    if (!this.state.currentTeam || !this.state.currentTeam.formation) {
+    if (!this.state.currentTeam || !this.state.currentTeam.mapTeam) {
       return null;
     }
     const { currentTeam } = this.state;

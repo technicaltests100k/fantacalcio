@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Player from '../Player';
+import roles from '../../Config/roles';
 import './pitch.css';
 
 /**
@@ -26,17 +27,26 @@ export class Pitch extends PureComponent {
   };
 
   /**
-   * It returns the list of players from an array provided
-   * @param {array} players - array of players to loop through
+   * It returns an array of players according to the params provided.
+   * @param {map} playersMap - map containing the key as formation_place
+   * @param {array} formation - array the contains the formation_place
+   * @param {number} begin - begin index for the player array
+   * @param {number} end - end index for the player array
    * @param {boolean} withTshirt - option to pass that determines how to display the player:
    * - false: wrapped in a <li> element. It will be displayed without the tshirt image
    * - true: wrapped in a <div> element. It will be displayed with the tshirt image
    * @return {array} - array of Players components
    */
-  getPlayers = (players, withTshirt = false) => {
-    return players.map((player, index) => {
-      return <Player player={player} key={index} tshirt={withTshirt} />;
-    });
+  getPlayers = (playersMap, formation, begin, line, withTshirt = false) => {
+    let playerRow = [];
+    for (let i = begin; i < line; i++) {
+      const player = playersMap.get(formation[i]);
+      playerRow.push(
+        <Player player={player} key={formation[i]} tshirt={withTshirt} />
+      );
+    }
+
+    return playerRow;
   };
 
   /**
@@ -60,7 +70,7 @@ export class Pitch extends PureComponent {
    */
   getTeam = team => {
     // Add 1 to formation string to turn it into "1xxx"
-    const formation = `1${team.formation}`.split('');
+    const formation = `1${team.objTeam.formation}`.split('');
     // Initial index for calculating the length of the row
     let begin = 0;
     // Loop through the current formation
@@ -70,7 +80,13 @@ export class Pitch extends PureComponent {
       const row = (
         //new row with list of players who belong to it
         <div className="section" key={index}>
-          {this.getPlayers(team.players.slice(begin, end), true)}
+          {this.getPlayers(
+            team.mapTeam,
+            roles[team.objTeam.formation],
+            begin,
+            end,
+            true
+          )}
         </div>
       );
       // update begin index for next row
@@ -96,7 +112,16 @@ export class Pitch extends PureComponent {
     switch (type) {
       case 'list':
         result = {
-          players: <ol>{this.getPlayers(team.players)}</ol>,
+          players: (
+            <ol>
+              {this.getPlayers(
+                team.mapTeam,
+                roles[team.objTeam.formation],
+                0,
+                10
+              )}
+            </ol>
+          ),
           style: 'list'
         };
         break;
